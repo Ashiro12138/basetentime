@@ -2,10 +2,10 @@
 <html>
 <body>
 
-<div id="time"> </div>
+<div id="time" style="font-size: 100"> </div>
 
 <script type="text/javascript">
-	function updateClock() {
+function updateClock() {
     var now = new Date(); // current date
     var time = now.getHours()*60*60 + now.getMinutes()*60 + now.getSeconds();
     var fractionDay = time/86400; 
