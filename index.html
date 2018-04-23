@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<font id="time" size="100"> </font>
+<div id="time"></div>
 
 <script type="text/javascript">
 function updateClock() {
@@ -20,7 +20,17 @@ function updateClock() {
     // call this function again in 1000ms
     setTimeout(updateClock, 864);
 }
+function setCenter() {
+	var w = window.innerWidth;
+	var h = window.innerHeight;
+    var fsize = 200;
+    var top = 100;
+    document.getElementById('time').style.marginLeft = ((w/2)-fsize/2).toString() + 'px';
+	document.getElementById('time').style.marginTop = ((h/2)-fsize/2).toString() + 'px'
+    document.getElementById('time').style.fontSize = fsize.toString() + 'px';
+}
 updateClock(); // initial call
+setCenter();
 </script>
 </body>
 </html> 
