@@ -23,10 +23,10 @@ function updateClock() {
 function setCenter() {
 	var w = window.innerWidth;
 	var h = window.innerHeight;
-    var fsize = 200;
+    var fsize = 300;
     var top = 100;
-    document.getElementById('time').style.marginLeft = ((w/2)-fsize/2).toString() + 'px';
-	document.getElementById('time').style.marginTop = ((h/2)-fsize/2).toString() + 'px'
+    document.getElementById('time').style.marginLeft = ((w/2)-fsize*1.5).toString() + 'px';
+	document.getElementById('time').style.marginTop = ((h/2)-fsize*0.75).toString() + 'px'
     document.getElementById('time').style.fontSize = fsize.toString() + 'px';
 }
 updateClock(); // initial call
