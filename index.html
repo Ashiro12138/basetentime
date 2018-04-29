@@ -7,7 +7,7 @@
 <script type="text/javascript">
 function updateClock() {
     var now = new Date(); // current date
-    var time = now.getHours()*60*60 + now.getMinutes()*60 + now.getSeconds();
+    var time = now.getHours()*60*60 + now.getMinutes()*60 + now.getSeconds() + now.getMilliseconds();
     var fractionDay = time/86400; 
     var hours = parseInt(10 * fractionDay);
     var minutes = parseInt((10 * fractionDay - hours) * 100);
@@ -18,7 +18,7 @@ function updateClock() {
     document.getElementById('time').innerHTML = display;
 
     // call this function again in 1000ms
-    setTimeout(updateClock, 864);
+    setTimeout(updateClock, 100);
 }
 function setCenter() {
 	var w = window.innerWidth;
