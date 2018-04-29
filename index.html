@@ -13,7 +13,7 @@ function updateClock() {
     var minutes = parseInt((10 * fractionDay - hours) * 100);
     var seconds = parseInt(((10 * fractionDay - hours) * 100 - minutes) * 100);
     var milliseconds = parseInt(((((10 * fractionDay - hours) * 100 - minutes) * 100) - seconds)*1000);
-    var display = hours + ':' + minutes + ':' + seconds + ':' + milliseconds;
+    var display = hours + ':' + minutes + ':' + seconds;
 
     // set the content of the element with the ID time to the formatted string
     document.getElementById('time').innerHTML = display;
