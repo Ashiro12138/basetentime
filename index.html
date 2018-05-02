@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div class="leftcol unselectable">
+    <h1>Class Times</h1>
+    <p>HTG - 3:47:22</p>
+    <p>P1 - 3:61:11</p>
+    <p>P2 - 3:92:36</p>
+    <p>Morning Tea - 4:23:61-4:37:50</p>
+    <p>P3 - 4:40:97</p>
+    <p>P4 - 4:72:22</p>
+    <p>P5 - 5:03:47</p>
+    <p>Lunch - 5:34:72 - 5:59:02</p>
+    <p>P6 - 5:62:50</p>
+    <p>P7 -5:93:75</p>
+    <p>School End - 6:25:00</p><br>
+</div>
+
+<div class="rightcol">
+    <h2>Twelve To Ten</h2>
+    Hour:<br>
+    <input onClick="this.select()" type="text" maxlength="2" id="Hour1">
+    <br>
+    Min:<br>
+    <input onClick="this.select()" type="text" maxlength="2" id="Min1">
+    Sec:<br>
+    <input onClick="this.select()" type="text" maxlength="2" id="Sec1">
+    <br><br>
+    <button onclick="twelvetoten()">Convert</button>
+
+    <div id="time1">00:00:00</div>
+    <br><br>
+    <h2>Ten to Twelve</h2>
+    Hour:<br>
+    <input onClick="this.select()" type="text" maxlength="2" id="Hour2">
+    <br>
+    Min:<br>
+    <input onClick="this.select()" type="text" maxlength="2" id="Min2">
+    Sec:<br>
+    <input onClick="this.select()" type="text" maxlength="2" id="Sec2">
+    <br><br>
+    <button onclick="tentotwelve()">Convert</button>
+
+    <div id="time2">00:00:00</div>
+</div>
+
+<div id="Period" class="unselectable"></div>
+<div id="time" class="unselectable"></div>
+
+<style type="text/css">
+#time {
+    font-size: 20vw;
+}
+
+#Period {
+    font-size: 10vw;
+    text-align: center;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.leftcol {
+    font-size: 1vw;
+    width:170px;
+    height:auto;
+    float:left;
+}
+
+.rightcol {
+    font-size: 1vw;
+    width:170px;
+    height:auto;
+    float:right;
+}
+</style>
+
+<script type="text/javascript">
+function FNL(num, length=2){
+    var r = "" + num;
+    while(r.length<length){
+        r = "0" + r;
+    }
+    return r;
+}
+
+function twelvetoten(){
+    var hours = document.getElementById('Hour1').value;
+    var minutes = document.getElementById('Min1').value;
+    var seconds = document.getElementById('Sec1').value;
+    var time = hours*60*60 + minutes*60 + seconds*1;
+    var fractionDay = time/86400; 
+    var hours = parseInt(10 * fractionDay);
+    var minutes = parseInt((10 * fractionDay - hours) * 100);
+    var seconds = parseInt(((10 * fractionDay - hours) * 100 - minutes) * 100);
+    var milliseconds = parseInt(((((10 * fractionDay - hours) * 100 - minutes) * 100) - seconds)*1000);
+    var display = FNL(hours) + ':' + FNL(minutes) + ':' + FNL(seconds);
+    document.getElementById('time1').innerHTML = display;
+}
+
+function tentotwelve(){
+    var hours = document.getElementById('Hour2').value;
+    var minutes = document.getElementById('Min2').value;
+    var seconds = document.getElementById('Sec2').value;
+    var time = hours*100*100 + minutes*100 + seconds*1;
+    var fractionDay = time/100000;
+    var hours = parseInt(24 * fractionDay);
+    var minutes = parseInt((24 * fractionDay - hours) * 60);
+    var seconds = parseInt(((24 * fractionDay - hours) * 60 - minutes) * 60);
+    var display = FNL(hours) + ':' + FNL(minutes) + ':' + FNL(seconds);
+
+    document.getElementById('time2').innerHTML = display;
+}
+
+function updatePeriod(){
+    var section = 0;
+    var periodStr = "";
+    var now = new Date(); // current date
+    var seconds = now.getHours()*60*60 + now.getMinutes()*60 + now.getSeconds()*1;
+    if (seconds > 62500) {section += 1};
+    if (seconds > 59375) {section += 1};
+    if (seconds > 56250) {section += 1};
+    if (seconds > 53472) {section += 1};
+    if (seconds > 50347) {section += 1};
+    if (seconds > 47222) {section += 1};
+    if (seconds > 44097) {section += 1};
+    if (seconds > 42361) {section += 1};
+    if (seconds > 39236) {section += 1};
+    if (seconds > 36111) {section += 1};
+    if (seconds > 34722) {section += 1};
+    switch(section){
+        case 0:
+            periodStr = "Pre-School"
+            break;
+        case 1:
+            periodStr = "HTG"
+            break;
+        case 2:
+            periodStr = "Period 1"
+            break;
+        case 3:
+            periodStr = "Period 2"
+            break;
+        case 4:
+            periodStr = "Morning Tea"
+            break;
+        case 5:
+            periodStr = "Period 3"
+            break;
+        case 6:
+            periodStr = "Period 4"
+            break;
+        case 7:
+            periodStr = "Period 5"
+            break;
+        case 8:
+            periodStr = "Lunch Time"
+            break;
+        case 9:
+            periodStr = "Period 6"
+            break;
+        case 10:
+            periodStr = "Period 7"
+            break;
+        case 11:
+            periodStr = "After School";
+            break;
+    }
+    document.getElementById('Period').innerHTML = periodStr;
+}
+
+function updateClock() {
+    var now = new Date(); // current date
+    var time = now.getHours()*60*60 + now.getMinutes()*60 + now.getSeconds() + now.getMilliseconds()/1000;
+    var fractionDay = time/86400; 
+    var hours = parseInt(10 * fractionDay);
+    var minutes = parseInt((10 * fractionDay - hours) * 100);
+    var seconds = parseInt(((10 * fractionDay - hours) * 100 - minutes) * 100);
+    var milliseconds = parseInt(((((10 * fractionDay - hours) * 100 - minutes) * 100) - seconds)*1000);
+    var display = FNL(hours) + ':' + FNL(minutes) + ':' + FNL(seconds);
+
+    // set the content of the element with the ID time to the formatted string
+    document.getElementById('time').innerHTML = display;
+    updatePeriod();
+
+    // call this function again in 1000ms
+    setTimeout(updateClock, 100);
+}
+updateClock(); // initial call
+</script>
+</body>
+</html> 
+
