@@ -19,7 +19,13 @@
 <div id="time"></div>
 
 <style type="text/css">
+#time {
+    margin-top: 100px;
+    font-size: 20vw;
+}
+
 .leftcol {
+    font-size: 1vw;
     width:170px;
     height:auto;
     float:left;
@@ -51,17 +57,7 @@ function updateClock() {
     // call this function again in 1000ms
     setTimeout(updateClock, 100);
 }
-function setCenter() {
-	var w = window.innerWidth;
-	var h = window.innerHeight;
-    var fsize = 300;
-    var top = 100;
-    document.getElementById('time').style.marginLeft = ((w/2)-fsize*1.5).toString() + 'px';
-	document.getElementById('time').style.marginTop = ((h/2)-fsize*0.75).toString() + 'px'
-    document.getElementById('time').style.fontSize = fsize.toString() + 'px';
-}
 updateClock(); // initial call
-setCenter();
 </script>
 </body>
 </html> 
