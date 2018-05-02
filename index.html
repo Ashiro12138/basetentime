@@ -44,12 +44,17 @@
     <div id="time2">00:00:00</div>
 </div>
 
-
+<div id="Period" class="unselectable"></div>
 <div id="time" class="unselectable"></div>
 
 <style type="text/css">
 #time {
     font-size: 20vw;
+}
+
+#Period {
+    font-size: 10vw;
+    text-align: center;
 }
 
 .unselectable {
@@ -113,6 +118,63 @@ function tentotwelve(){
     document.getElementById('time2').innerHTML = display;
 }
 
+function updatePeriod(){
+    var section = 0;
+    var periodStr = "";
+    var now = new Date(); // current date
+    var seconds = now.getHours()*60*60 + now.getMinutes()*60 + now.getSeconds()*1;
+    if (seconds > 62500) {section += 1};
+    if (seconds > 59375) {section += 1};
+    if (seconds > 56250) {section += 1};
+    if (seconds > 53472) {section += 1};
+    if (seconds > 50347) {section += 1};
+    if (seconds > 47222) {section += 1};
+    if (seconds > 44097) {section += 1};
+    if (seconds > 42361) {section += 1};
+    if (seconds > 39236) {section += 1};
+    if (seconds > 36111) {section += 1};
+    if (seconds > 34722) {section += 1};
+    switch(section){
+        case 0:
+            periodStr = "Pre-School"
+            break;
+        case 1:
+            periodStr = "HTG"
+            break;
+        case 2:
+            periodStr = "Period 1"
+            break;
+        case 3:
+            periodStr = "Period 2"
+            break;
+        case 4:
+            periodStr = "Morning Tea"
+            break;
+        case 5:
+            periodStr = "Period 3"
+            break;
+        case 6:
+            periodStr = "Period 4"
+            break;
+        case 7:
+            periodStr = "Period 5"
+            break;
+        case 8:
+            periodStr = "Lunch Time"
+            break;
+        case 9:
+            periodStr = "Period 6"
+            break;
+        case 10:
+            periodStr = "Period 7"
+            break;
+        case 11:
+            periodStr = "After School";
+            break;
+    }
+    document.getElementById('Period').innerHTML = periodStr;
+}
+
 function updateClock() {
     var now = new Date(); // current date
     var time = now.getHours()*60*60 + now.getMinutes()*60 + now.getSeconds() + now.getMilliseconds()/1000;
@@ -125,6 +187,7 @@ function updateClock() {
 
     // set the content of the element with the ID time to the formatted string
     document.getElementById('time').innerHTML = display;
+    updatePeriod();
 
     // call this function again in 1000ms
     setTimeout(updateClock, 100);
