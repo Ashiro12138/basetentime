@@ -122,7 +122,7 @@ function updatePeriod(){
     var section = 0;
     var periodStr = "";
     var now = new Date(); // current date
-    var seconds = now.getHours()*60*60 + now.getMinutes()*60 + now.getSeconds()*1;
+    var seconds = (now.getHours()*60*60 + now.getMinutes()*60 + now.getSeconds()*1)/86400 * 100000;
     if (seconds > 62500) {section += 1};
     if (seconds > 59375) {section += 1};
     if (seconds > 56250) {section += 1};
